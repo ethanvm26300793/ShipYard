@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProduct, products } from "../../data/products";
+import dynamic from "next/dynamic";
+import Reviews from "../../components/Reviews";
 
 // Generate a static page for every product.
 export function generateStaticParams() {
@@ -10,6 +12,9 @@ export function generateStaticParams() {
   }));
 }
 
+const reviews = dynamic( () => import("../../components/Reviews"), {
+  loading: () => <p>Loading reviews....</p>,
+})
 // Display the product selected by its URL ID.
 export default async function ProductPage({
   params,
@@ -73,6 +78,7 @@ export default async function ProductPage({
           </ul>
         </div>
       </article>
+      <Reviews productName={product.name}/>
     </main>
   );
 }
