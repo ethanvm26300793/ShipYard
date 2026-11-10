@@ -1,16 +1,42 @@
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProduct, products } from "../../data/products";
+import type { Metadata } from "next";
 
-// Generate a static page for every product.
+import { getProduct, products } from "../../data/products";
+import ReviewsLoader from "../../components/Reviews";
+
+// Generate static pages for all products.
 export function generateStaticParams() {
   return products.map((product) => ({
     id: product.id,
   }));
 }
 
-// Display the product selected by its URL ID.
+// Generate metadata for each individual product.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+
+  const product = getProduct(id);
+
+  if (!product) {
+    return {
+      title: "Product Not Found | ShipYard",
+      description: "The requested product could not be found.",
+    };
+  }
+
+  return {
+    title: `${product.name} | ShipYard`,
+    description: product.description,
+  };
+}
+
+// Display the selected product.
 export default async function ProductPage({
   params,
 }: {
@@ -20,18 +46,19 @@ export default async function ProductPage({
 
   const product = getProduct(id);
 
-  // Display a 404 page if the product doesn't exist.
   if (!product) {
     notFound();
   }
 
   return (
     <main className="container">
+
       <Link href="/" className="back-link">
         ← Back to catalog
       </Link>
 
       <article className="detail">
+
         <div
           className="detail-art"
           style={{ background: product.accent }}
@@ -42,6 +69,7 @@ export default async function ProductPage({
         </div>
 
         <div className="detail-body">
+
           <span className="card-category">
             {product.category}
           </span>
@@ -71,8 +99,13 @@ export default async function ProductPage({
               <li key={spec}>{spec}</li>
             ))}
           </ul>
+
         </div>
       </article>
+
+      {/* Dynamically loaded Reviews component */}
+      <ReviewsLoader productName={product.name} />
+
     </main>
   );
 }

@@ -9,6 +9,7 @@ export interface Product {
   accent: string;
   description: string;
   specs: string[];
+  image?: string;
 }
 
 export const products: Product[] = [
@@ -23,6 +24,7 @@ export const products: Product[] = [
     description:
       "A lightweight daily trainer with a springy foam midsole and a breathable knit upper.",
     specs: ["Knit upper", "Foam midsole", "320g per shoe", "Unisex sizing"],
+    image: "/images/sneakers.jpg"
   },
   {
     id: "pulse-buds",
@@ -35,6 +37,7 @@ export const products: Product[] = [
     description:
       "Compact wireless earbuds with active noise cancellation and an eight-hour battery.",
     specs: ["Active noise cancellation", "8h battery", "USB-C case", "IPX4 sweatproof"],
+    image: "/images/pulsebuds.jpg"
   },
   {
     id: "nova-watch",
@@ -47,6 +50,7 @@ export const products: Product[] = [
     description:
       "A stylish smartwatch that tracks your daily activity, heart rate, workouts and sleep.",
     specs: ["AMOLED display", "Heart rate tracking", "7-day battery", "Water resistant"],
+    image: "/images/novawatch.jpg"
   },
   {
     id: "echo-speaker",
@@ -59,6 +63,7 @@ export const products: Product[] = [
     description:
       "A compact wireless speaker delivering clear vocals and rich bass for your music.",
     specs: ["Bluetooth 5.3", "360-degree sound", "12h battery", "USB-C charging"],
+    image: "/images/echospeaker.jpg"
   },
   {
     id: "orbit-backpack",
@@ -71,6 +76,7 @@ export const products: Product[] = [
     description:
       "A durable everyday backpack with organized compartments and a padded laptop sleeve.",
     specs: ["25L capacity", "15-inch laptop compartment", "Water-resistant fabric", "Padded straps"],
+    image: "/images/backpack.jpg"
   },
   {
     id: "swift-mouse",
@@ -83,6 +89,7 @@ export const products: Product[] = [
     description:
       "An ergonomic wireless mouse designed for smooth navigation and comfortable productivity.",
     specs: ["Wireless connectivity", "Adjustable DPI", "Rechargeable battery", "Ergonomic design"],
+    image: "/images/mouse.jpg"
   },
   {
     id: "cloud-runner",
@@ -95,6 +102,7 @@ export const products: Product[] = [
     description:
       "Comfortable everyday sneakers with cushioned soles and breathable materials.",
     specs: ["Breathable mesh", "Cushioned sole", "Lightweight design", "Flexible outsole"],
+    image: "/images/cloudrunner.jpg"
   },
   {
     id: "spark-powerbank",
@@ -107,6 +115,7 @@ export const products: Product[] = [
     description:
       "A compact power bank that keeps your phone and other devices charged while traveling.",
     specs: ["20000mAh capacity", "USB-C output", "Fast charging", "LED battery indicator"],
+    image: "/images/powerbank.jpg"
   },
 ];
 
