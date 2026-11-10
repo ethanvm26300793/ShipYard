@@ -1,16 +1,16 @@
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProduct, products } from "../data/products";
+import { getProduct, products } from "../../data/products";
 
-// Generate a page for every product during the build.
+// Generate a static page for every product.
 export function generateStaticParams() {
   return products.map((product) => ({
     id: product.id,
   }));
 }
 
-// Display an individual product using its URL ID.
+// Display the product selected by its URL ID.
 export default async function ProductPage({
   params,
 }: {
@@ -20,7 +20,7 @@ export default async function ProductPage({
 
   const product = getProduct(id);
 
-  // Show the Next.js 404 page if the product does not exist.
+  // Display a 404 page if the product doesn't exist.
   if (!product) {
     notFound();
   }
